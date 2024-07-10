@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: 100vh;
+            margin: 0;
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            width: 300px;
+        }
+        input, button {
+            padding: 8px;
+            margin-bottom: 10px;
+        }
+        .error {
+            color: red; /* 에러 메시지는 빨간색으로 표시 */
+            margin-top: -10px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+<h2>Sign Up</h2>
+<form action="/member" method="post">
+    <div>
+        <label for="name">이름:</label>
+        <input type="text" id="name" name="name" required>
+    </div>
+    <div>
+        <label for="email">이메일:</label>
+        <input type="email" id="email" name="email" required>
+    </div>
+    <div>
+        <label for="password">비밀번호:</label>
+        <input type="password" id="password" name="password" required oninput="validatePassword()">
+    </div>
+    <div>
+        <label for="confirm_password">비밀번호 확인:</label>
+        <input type="password" id="confirm_password" required oninput="validatePassword()">
+        <div id="password_error" class="error"></div>
+    </div>
+    <div>
+        <label for="phoneNumber">전화번호:</label>
+        <input type="text" id="phoneNumber" name="phoneNumber" required>
+    </div>
+    <button type="submit">Sign Up</button>
+</form>
+<script>
+    function validatePassword() {
+        const password = document.getElementById("password").value;
+        const confirmPassword = document.getElementById("confirm_password").value;
+        const errorMessage = document.getElementById("password_error");
+
+        if (password !== confirmPassword) {
+            errorMessage.textContent = "비밀번호가 일치하지 않습니다.";
+        } else {
+            errorMessage.textContent = ""; // 일치할 경우 에러 메시지 제거
+        }
+    }
+</script>
+</body>
+</html>
